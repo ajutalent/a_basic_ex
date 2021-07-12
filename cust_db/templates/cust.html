@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>cust info</title>
+</head>
+<body>
+    <h1> Database Operations </h1>
+
+    {{action}}
+
+<form action="http://localhost:5000/cust/save/" method="post">
+    Customer Id : <input type="text" name="cid" value="{{cust.customerId}}"> <br><br>
+    Customer Name : <input type="text" name="cnm" value="{{cust.customerName}}"> <br><br>
+    Customer Age : <input type="text" name="cage" value="{{cust.customerAge}}"> <br><br>
+    Customer Balance : <input type="text" name="cbal" value="{{cust.customerBalance}}"> <br><br>
+    Customer Address : <input type="text" name="cadr" value="{{cust.customerAddress}}"> <br><br>
+    <input type="submit">
+</form>
+
+{% if customers %}
+    <table border="1">
+        <th>
+            <thead>
+                <th> CustId</th>
+                <th> CustName</th>
+                <th> CustAge</th>
+                <th> CustBalance</th>
+                <th> CustAddress</th>
+                <th> Action</th>
+            </thead>
+        </th>
+        {% for custs in customers %}
+        <tbody>
+            <td> {{custs.customerId}} </td>
+            <td> {{custs.customerName}} </td>
+            <td> {{custs.customerAge}} </td>
+            <td> {{custs.customerBalance}} </td>
+            <td> {{custs.customerAddress}} </td>
+            <td>
+                <a href="http://localhost:5000/edit/cust/{{custs.customerId}}"> Edit </a>
+                <a href="http://localhost:5000/delete/cust/{{custs.customerId}}"> Delete </a>
+            </td>
+        </tbody>
+        {% endfor %}
+    </table>
+
+{% endif %}
+
+</body>
+</html>
